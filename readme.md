@@ -58,7 +58,35 @@ From http://stackoverflow.com/questions/9689104/installing-r-on-mac-warning-mess
 
 ## Database
 
-Kill connections
+Make a connection to a database
+
+```R
+library(RPostgreSQL)
+
+drv <- dbDriver("PostgreSQL")
+
+dbnamedb="dbname"
+hostdb="host"
+portdb=5432
+usernamedb="user"
+passworddb="password"
+
+con <- dbConnect(drv, dbname=dbnamedb,host=hostdb,port=portdb,user=userdb,password=passworddb)
+
+```
+
+Select from databas with dbReadTable
+
+```R
+
+source_schema <- "schema"
+source_table <- "table"
+df_schema_table <- dbReadTable(con,c(source_schema,source_table))
+
+```
+
+
+Kill connections, for instance, if you get the warning that more than 16 connections are open.
 
 ```R
 library(RPostgreSQL)
