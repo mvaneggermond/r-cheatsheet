@@ -161,3 +161,20 @@ paste_na <- function(..., sep = " ", collapse = NULL, na.rm = F) {
 }
 
 ```
+
+## Replace NA
+```R
+# Replace NaN by NA
+df <- rapply( df, f=function(x) ifelse(is.nan(x),NA,x), how="replace" )
+
+```
+
+## Within with lubridate
+```R
+# Check if a time is between two dates
+interval <- lubridate::interval(ymd_hm("1970-1-1 7:30"), ymd_hm("1970-1-1 9:30"))
+
+date %within% interval
+
+
+```
